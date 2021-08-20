@@ -68,7 +68,7 @@ use App\Core\Helper;
                         </li>
                     <?php endif; ?>
 
-                    <?php if (Helper::hasBeenAssignedAClass($sms_userId, $schoolId, $sms_role)) : ?>
+                    <?php if (Helper::hasBeenAssignedAClass($sms_userId, $schoolId, $sms_role) && Helper::isActivated($schoolId)) : ?>
                         <li class="nav-item">
                             <a class="nav-link" href="uploadstudent.php">
                                 <i class="mdi mdi-bag-personal"></i> &nbsp; &nbsp;Upload Student</a>

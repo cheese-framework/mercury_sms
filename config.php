@@ -2,7 +2,7 @@
 
 // Simple Configs
 const VOUCHER_CHARACTER_COUNT = 15;
-
+const FREE_TRIAL_DAYS = 90;
 
 // Database Configs
 
@@ -23,38 +23,6 @@ const SMTP_PASSWORD = "2178056cletus";
 const SMTP_PORT = 587;
 const DEFAULT_FROM = SMTP_USERNAME;
 const DEFAULT_FULLNAME = "Mercury School Management System";
-
-
-/*** PAYPAL API CREDENTIALS **/
-
-// SANDBOX CREDENTIALS
-
-const CLIENT_ID = "ATBVqZ7hNm9N3hlbBzrULy9efk7rLOy5SooS-uneIykXG3EGlPbaJa-q0SF6oalk66Q6Rk-_vaIubsO4";
-const SECRET = "EIxpqmf-1bONovx-L8arEHZpt22Ezi8KahpLOxpGpeEpbgJH3UCgeV9e2pdRpGbjFr1uLs9ki44eYsBa";
-
-// LIVE ACCOUNT CREDENTIALS
-
-const LIVE_CLIENT_ID = "AaEUM_6Qp3VJBK3Sf3GBo1jIxS99WEzhHCfp-f_vh-zhmlV3otC-lYq1d2ximyedk-1-bV0WmcHgiUMl";
-const LIVE_SECRET = "EPPh7hVM9VvCXIC49Sgx6hBpna-tPn6k7UESCvHJ1gjjNNNBTWxhb7cs8q2lrdjDxRz1Dj73uBEu9idQ";
-
-// Paypal Api Context
-
-$apiContext = new \PayPal\Rest\ApiContext(
-    new \PayPal\Auth\OAuthTokenCredential(
-        CLIENT_ID,
-        SECRET
-    )
-);
-
-// Options Config Paypal API
-
-$apiContext->setConfig([
-    'mode' => 'sandbox',
-    'log.LogEnabled' => false,
-    'log.FileName' => '../PayPal.log',
-    'log.LogLevel' => 'INFO', // PLEASE USE `INFO` LEVEL FOR LOGGING IN LIVE ENVIRONMENTS
-    'cache.enabled' => true
-]);
 
 // PUSHER CONFIGURATIONS
 

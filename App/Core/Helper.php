@@ -1933,7 +1933,7 @@ class Helper
             if ($firstMonth) {
                 $startDateObj = new \DateTime($date);
                 $days = $startDateObj->diff($nowObj)->days;
-                return $days <= 31;
+                return $days <= FREE_TRIAL_DAYS;
             } else {
                 $startDateObj = new DateTime($payment->startDate);
                 $endDateObj = new DateTime($payment->endDate);

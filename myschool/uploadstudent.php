@@ -5,9 +5,12 @@ use App\Database\CSVUploader;
 use App\Media\FileUpload;
 use App\Notifiable\Mailable;
 use App\School\AcademicYear;
-use App\School\Subject;
 
 include_once './includes/header.php';
+
+if (!Helper::isActivated($schoolId)) {
+    Helper::showNotPermittedPage();
+}
 
 // upload students data via CSV
 $error = [];

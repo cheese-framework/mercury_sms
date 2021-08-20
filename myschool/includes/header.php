@@ -102,6 +102,7 @@ if (Helper::isActivated($schoolId)) {
     <link rel="stylesheet" href="assets/css/demo_1/style.css" />
     <link rel="stylesheet" href="assets/css/Chart.css" />
     <link rel="stylesheet" href="assets/custom/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pincode-input@0.4.2/dist/pincode-input.min.css" />
     <!-- <link rel="stylesheet" href="assets/custom/dt/datatables.min.css"> -->
     <!-- End layout styles -->
     <!-- <link rel="shortcut icon" href="assets/images/favicon.png" /> -->
