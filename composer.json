@@ -1,0 +1,16 @@
+{
+    "autoload": {
+        "psr-4": {
+            "MyApp\\": "src"
+        }
+    },
+    "require": {
+        "phpmailer/phpmailer": "^6.4",
+        "paypal/rest-api-sdk-php": "*",
+        "cboden/ratchet": "^0.4.3",
+        "dompdf/dompdf": "^1.0",
+        "twilio/sdk": "^6.22",
+        "php-amqplib/php-amqplib": "^3.0",
+        "fakerphp/faker": "^1.14"
+    }
+}

@@ -1,0 +1,9 @@
+vendor
+PayPal.log
+.buildpath
+.project
+.DS_Store
+myschool/node_modules
+./myschool/node_modules
+*.log
+*.log.1
