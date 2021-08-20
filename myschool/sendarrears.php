@@ -53,9 +53,11 @@ if (isset($_GET['class'])) {
 
         try {
             $mail = new Mail();
+            // $receivers = [];
             foreach ($to as $t) {
-                $mail->sendMail([$t => $t], $subject, $msg, Helper::getSchoolName($school), Helper::getSchoolEmail($school));
+                $receivers[] = [$t => $t];
             }
+            $mail->sendBulkMail($receivers, $subject, $msg, Helper::getSchoolName($school), Helper::getSchoolEmail($school));
 
             // send sms notification
 

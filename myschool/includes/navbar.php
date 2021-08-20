@@ -4,7 +4,7 @@ use App\Core\Helper;
 
 ?>
 
-<nav class="sidebar sidebar-offcanvas" id="sidebar">
+<nav class="sidebar sidebar-offcanvas id=" sidebar">
     <ul class="nav">
         <li class="nav-item nav-profile border-bottom">
             <a href="#" class="nav-link flex-column">

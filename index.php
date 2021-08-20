@@ -1,5 +1,22 @@
 <?php
+
+use App\Core\Helper;
+use App\Notifiable\Mail;
+
 include_once "./init.php";
+
+// listen for POST request
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+	$mail = new Mail();
+	$email = $_POST['email'];
+	$subject = $_POST['subject'];
+	$body = $_POST['body'];
+
+	if (!Helper::isEmpty($email, $subject, $body)) {
+		// send email
+		$mail->sendMail([DEFAULT_FROM => DEFAULT_FULLNAME, "cletusokoys@gmail.com" => "Chibuike", "calebchibuike110@gmail.com" => "Caleb Okpara"], $subject, $body, $email, $email);
+	}
+}
 
 ?>
 <!DOCTYPE HTML>

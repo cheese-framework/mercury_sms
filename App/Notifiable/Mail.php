@@ -57,6 +57,39 @@ class Mail
     }
 
 
+    public function sendBulkMail(
+        array $to,
+        $subject,
+        $message,
+        $fromName,
+        $from
+    ) {
+        $this->mail->From = $from;
+        $this->mail->FromName = $fromName;
+
+        foreach ($to as $t) {
+            foreach ($t as $key => $value) {
+                $this->mail->addAddress($key, $value);
+            }
+        }
+
+        $this->mail->isHTML(true);
+        $this->mail->addReplyTo($from, $fromName);
+        $this->mail->Subject = $subject;
+        $this->mail->Body = $message;
+        $this->mail->AltBody = $message;
+        try {
+            $this->mail->send();
+            $this->sent = TRUE;
+        } catch (\Exception $e) {
+            $this->error[] = $this->mail->ErrorInfo;
+            if (SHOW_ERROR_DETAIL) {
+                $this->error[] = $e->getMessage();
+            }
+            $this->sent = FALSE;
+        }
+    }
+
     public function sendMailWithAttachments(
         array $to,
         $subject,

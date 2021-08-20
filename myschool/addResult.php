@@ -68,25 +68,31 @@ if (isset($_POST['addResult'])) {
                         array_push($tempGrade, "$g:" . floatval($_POST[$clean]));
                     }
                     $total += $exam;
-                    $grades = implode(",", $tempGrade);
-                    try {
-                        if (empty($error)) {
-                            Helper::addResult(
-                                $term,
-                                $year,
-                                $subject,
-                                $student,
-                                $id,
-                                $grades,
-                                $total,
-                                $exam,
-                                $schoolId
-                            );
-                        } else {
-                            $error[] = "Something went wrong";
+
+                    // make sure the grade inserted is more than zero
+                    if ($total > 0) {
+                        $grades = implode(",", $tempGrade);
+                        try {
+                            if (empty($error)) {
+                                Helper::addResult(
+                                    $term,
+                                    $year,
+                                    $subject,
+                                    $student,
+                                    $id,
+                                    $grades,
+                                    $total,
+                                    $exam,
+                                    $schoolId
+                                );
+                            } else {
+                                $error[] = "Something went wrong";
+                            }
+                        } catch (Exception $e) {
+                            $error[] = $e->getMessage();
                         }
-                    } catch (Exception $e) {
-                        $error[] = $e->getMessage();
+                    } else {
+                        $error[] = "If the student scored 0, there is no need to enter the record. Zero is the default value for each grade";
                     }
                 }
             }
@@ -99,20 +105,25 @@ if (isset($_POST['addResult'])) {
                     $error[] = "Please specify a valid grade value";
                 } else {
                     $total += $exam;
-                    try {
-                        Helper::addResult(
-                            $term,
-                            $year,
-                            $subject,
-                            $student,
-                            $id,
-                            $grades,
-                            $total,
-                            $exam,
-                            $schoolId
-                        );
-                    } catch (Exception $e) {
-                        $error[] = $e->getMessage();
+                    // make sure the grade inserted is more than zero
+                    if ($total > 0) {
+                        try {
+                            Helper::addResult(
+                                $term,
+                                $year,
+                                $subject,
+                                $student,
+                                $id,
+                                $grades,
+                                $total,
+                                $exam,
+                                $schoolId
+                            );
+                        } catch (Exception $e) {
+                            $error[] = $e->getMessage();
+                        }
+                    } else {
+                        $error[] = "If the student scored 0, there is no need to enter the record. Zero is the default value for each grade";
                     }
                 }
             }
