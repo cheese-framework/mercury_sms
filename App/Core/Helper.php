@@ -679,7 +679,7 @@ class Helper
         $sheets = Helper::getResult($year, $term, $subject, $student, $school);
         $prev = 0;
         if ($sheets) {
-            $prev += $sheets[2]; // assessment grade
+            $prev = $sheets[2]; // assessment grade
         } else {
             $prev = 0;
         }

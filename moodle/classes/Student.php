@@ -9,9 +9,8 @@ class Student
     public static function login($userId, $password)
     {
         $db = Database::getInstance();
-        $db->query("SELECT studentId,fullname,class,academicYear,admissionno,school,email,password FROM students WHERE email=? OR admissionno=?");
+        $db->query("SELECT studentId,fullname,class,academicYear,admissionno,school,email,password FROM students WHERE studentId=?");
         $db->bind(1, $userId);
-        $db->bind(2, $userId);
         $data = $db->single();
         if ($db->rowCount() > 0) {
             $passwordDB = $data->password;

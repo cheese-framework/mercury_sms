@@ -94,6 +94,7 @@ include_once "./init.php";
 						<div class="col-xs-2">
 							<div id="fh5co-logo"><a href="index.php"><i class="icon-study"></i> Mercury</a></div>
 						</div>
+
 						<div class="col-xs-10 text-right menu-1">
 							<ul>
 								<li class="active"><a href="index.php">Home</a></li>
@@ -107,28 +108,17 @@ include_once "./init.php";
 							</ul>
 						</div>
 					</div>
-
+					<div class="col-xs-12">
+						<p class="lead" style="font-weight: bold;">Sign up now and get the first 3 months for FREE</p>
+					</div>
 				</div>
 			</div>
 		</nav>
 
-		<aside id="fh5co-hero">
+		<aside id="fh5co-hero" class="col-lg-12 col-md-11 col-sm-10 mx-auto">
 			<div class="flexslider">
 				<ul class="slides">
-					<li style="background-image: url(images/one.jpg);">
-						<div class="overlay-gradient"></div>
-						<div class="container">
-							<div class="row">
-								<div class="col-md-8 col-md-offset-2 text-center slider-text">
-									<div class="slider-text-inner">
-										<h1>The Roots of Education are Bitter, But the Fruit is Sweet</h1>
-										<p><a class="btn btn-primary btn-lg" href="createschool.php">Start Managing Now!</a></p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</li>
-					<li style="background-image: url(images/one.jpg);">
+					<li style="background-image: url(images/four.jpg);">
 						<div class="overlay-gradient"></div>
 						<div class="container">
 							<div class="row">
@@ -136,13 +126,58 @@ include_once "./init.php";
 									<div class="slider-text-inner">
 										<h1>The Great Aim of Education is not Knowledge, But Action &AMP; True Management</h1>
 
+										<p style="color: white !important">Sign up now and get the first 3 months for FREEE!!!!</p>
 										<p><a class="btn btn-primary btn-lg" href="login.php">Login</a></p>
 									</div>
 								</div>
 							</div>
 						</div>
 					</li>
-					<li style="background-image: url(images/one.jpg);">
+					<li style="background-image: url(images/two.jpg);">
+						<div class="overlay-gradient"></div>
+						<div class="container">
+							<div class="row">
+								<div class="col-md-8 col-md-offset-2 text-center slider-text">
+									<div class="slider-text-inner">
+										<h1>The Roots of Education are Bitter, But the Fruit is Sweet</h1>
+										<p style="color: white !important">Sign up now and get the first 3 months for FREEE!!!!</p>
+										<p><a class="btn btn-primary btn-lg" href="createschool.php">Start Managing Now!</a></p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li style="background-image: url(images/three.jpg);">
+						<div class="overlay-gradient"></div>
+						<div class="container">
+							<div class="row">
+								<div class="col-md-8 col-md-offset-2 text-center slider-text">
+									<div class="slider-text-inner">
+										<h1>The Great Aim of Education is not Knowledge, But Action &AMP; True Management</h1>
+
+										<p style="color: white !important">Sign up now and get the first 3 months for FREEE!!!!</p>
+										<p><a class="btn btn-primary btn-lg" href="login.php">Login</a></p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li style="background-image: url(images/seven.jpg);">
+						<div class="overlay-gradient"></div>
+						<div class="container">
+							<div class="row">
+								<div class="col-md-8 col-md-offset-2 text-center slider-text">
+									<div class="slider-text-inner">
+										<h1>The Great Aim of Education is not Knowledge, But Action &AMP; True Management</h1>
+
+										<p style="color: white !important">Sign up now and get the first 3 months for FREEE!!!!</p>
+										<p><a class="btn btn-primary btn-lg" href="login.php">Login</a></p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li style="background-image: url(images/six.jpg);">
 						<div class="overlay-gradient"></div>
 						<div class="container">
 							<div class="row">
@@ -150,6 +185,7 @@ include_once "./init.php";
 									<div class="slider-text-inner">
 										<h1>We Help You to Manage Your School Data and Much more</h1>
 
+										<p style="color: white !important">Sign up now and get the first 3 months for FREEE!!!!</p>
 										<p><a class="btn btn-primary btn-lg" href="createschool.php">Start Managing Now!</a></p>
 									</div>
 								</div>
@@ -484,7 +520,7 @@ include_once "./init.php";
 						<p>Mercury School Management System is a data-driven solution. We take care of all the hassle of managing a school effectively.<br>Mercury - SMS is the cheapest management software in The Gambia.</p>
 					</div>
 
-					<div class="col-md-4 col-sm-4 col-xs-6 col-md-push-1 fh5co-widget">
+					<!-- <div class="col-md-4 col-sm-4 col-xs-6 col-md-push-1 fh5co-widget">
 						<h3>Engage us</h3>
 						<ul class="fh5co-footer-links">
 							<li><a href="#">Marketing</a></li>
@@ -492,16 +528,16 @@ include_once "./init.php";
 							<li><a href="#">System Analysis</a></li>
 							<li><a href="#">Advertise</a></li>
 						</ul>
-					</div>
+					</div> -->
 
 					<div class="col-md-4 col-sm-4 col-xs-6 col-md-push-1 fh5co-widget">
 						<h3>Legal</h3>
 						<ul class="fh5co-footer-links">
-							<li><a href="#">Find Designers</a></li>
-							<li><a href="#">Find Developers</a></li>
+							<!-- <li><a href="#">Find Designers</a></li>
+							<li><a href="#">Find Developers</a></li> -->
 							<li><a href="terms.html">Terms and Conditions</a></li>
-							<li><a href="#">Advertise</a></li>
-							<li><a href="#">API</a></li>
+							<!-- <li><a href="#">Advertise</a></li>
+							<li><a href="#">API</a></li> -->
 						</ul>
 					</div>
 				</div>

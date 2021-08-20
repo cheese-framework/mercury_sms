@@ -124,7 +124,7 @@ and open the template in the editor.
                                 <input type="submit" value="Sign in" class="btn btn-primary">
                             </div>
                         </form>
-                        <p>Forgot Password? <a href="forgotpassword.php">Reset</a></p>
+                        <p class="text-center">Forgot Password? <a href="forgotpassword.php">Reset</a></p>
                     <?php
                     else :
                         // Display the badge and button to sign out or go back to dashboard
@@ -150,7 +150,7 @@ and open the template in the editor.
             </div>
         </div>
         <footer>
-            <p class="text-right text-small">Powered by ChiStudios 2020 - <?= date("Y") ?></p>
+            <p class="text-center text-small">Powered by ChiStudios 2020 - <?= date("Y") ?></p>
         </footer>
     </div>
     <script src="./vendors/js/materialize.min.js"></script>

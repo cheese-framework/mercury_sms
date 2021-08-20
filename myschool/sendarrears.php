@@ -52,7 +52,6 @@ if (isset($_GET['class'])) {
             );
 
         try {
-            $queue = new QueuePublisher();
             $mail = new Mail();
             foreach ($to as $t) {
                 $mail->sendMail([$t => $t], $subject, $msg, Helper::getSchoolName($school), Helper::getSchoolEmail($school));

@@ -111,6 +111,16 @@ if (isset($_GET['class']) && $_GET['class'] != 0) {
                         },
                     ],
                     labels: ['Monday', 'Tuesday', 'Wednesday', 'Thurdsay', 'Friday']
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
                 }
             });
         </script>

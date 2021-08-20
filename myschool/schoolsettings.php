@@ -34,7 +34,7 @@ if (isset($_POST['updatebadge'])) {
     <div class="main-panel">
         <div class="content-wrapper pb-0 body">
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-6 mt-2 mb-2">
                     <div class="card">
                         <div class="card-body">
                             <?= Components::header("Change School Display Name", "h4"); ?>
@@ -51,10 +51,11 @@ if (isset($_POST['updatebadge'])) {
                     </div>
                 </div>
 
-                <div class="col-lg-6">
+                <div class="col-lg-6 mt-2 mb-2">
                     <div class="card">
                         <div class="card-body">
-                            <?= Components::header("Change School Display Badge", "h4"); ?>
+                            <?= Components::header("Change School Display Badge", "h4", "center"); ?>
+
                             <form action="" method="POST" enctype="multipart/form-data">
                                 <label for="">Change display badge:</label>
                                 <div class="form-group">
@@ -67,8 +68,27 @@ if (isset($_POST['updatebadge'])) {
                         </div>
                     </div>
                 </div>
+                <!-- <div class="col-lg-12 mt-2 mb-2">
+                    <div class="card">
+                        <div class="card-body" title="This is the message we send to parents or guardians to inform them about their ward's tuition fee arrears.">
+                            // Components::header("Arrears notification message <i class='mdi mdi-cash-multiple'></i>", "h4")
+                            <textarea name="arrears-message" id="arrears-message" cols="30" rows="10" class="form-control editor">
+                            <p>Hello, we are writing to you in regards of your ward's tuition fee.</p>
+                                <p>
+                                It is now due and we would be so happy if you could pay soon in order to avoid us from putting a hold on your ward's learning.</p>
+                                <p>
+                                We do not take pleasure in sending students home due to tuition fees arrears, but please understand that we would have no other choice than to send your ward(s) home if arrears are not settled</p>
 
-                <div class="col-lg-6 m-2">
+                                <p>The Management & Administrator</p>
+                                <p>
+                                <small></small><br>
+                                </p>
+                            </textarea>
+                            <button id="save-arrear-text" class="btn btn-primary mt-3">Save Message</button>
+                        </div>
+                    </div>
+                </div> -->
+                <div class="col-lg-8  mt-2 mb-2">
                     <div class="card">
                         <div class="card-body">
                             <?= Components::header("Monetary Settings <i class='mdi mdi-cash-multiple'></i>", "h4"); ?>
@@ -125,7 +145,7 @@ if (isset($_POST['updatebadge'])) {
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-5">
+                <div class="col-lg-4 mt-2 mb-2">
                     <div class="card">
                         <div class="card-body">
                             <?= Components::header("Internal Settings", "h4"); ?>
@@ -178,6 +198,7 @@ if (isset($_POST['updatebadge'])) {
                 </div>
             </div>
         </div>
+
         <?php include_once './includes/footer.php'; ?>
 
         <script>
@@ -191,6 +212,7 @@ if (isset($_POST['updatebadge'])) {
                 let currency = document.getElementById('currency');
                 let changeMoneyBtn = document.getElementById('changeMoneyBtn');
 
+                // change the currency of the school
                 changeMoneyBtn.onclick = function() {
                     if (currency.value.trim() != "") {
                         changeMoneyBtn.disabled = true;
@@ -212,6 +234,9 @@ if (isset($_POST['updatebadge'])) {
                         alert("Please specify a currency");
                     }
                 };
+
+                // change arrears notification message
+
 
                 // change school type
                 $('.school-type').on('change', function() {

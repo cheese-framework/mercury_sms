@@ -98,18 +98,19 @@ include_once './includes/header.php'; ?>
                         label: "Number of Enrollment for <?= AcademicYear::getCurrentYear($schoolId); ?>",
                         data: [<?= $male ?>, <?= $female ?>, <?= $total ?>],
                         backgroundColor: [
-                            'rgba(45,199,32)',
-                            'rgba(255,206,86)',
-                            'rgba(75,12,200)'
+                            'rgba(16, 11, 173, 1)',
+                            'rgba(218, 10, 177, 1)',
+                            'rgba(96, 11, 174, 1)'
                         ],
                         borderColor: [
-                            'rgba(45,199,32)',
-                            'rgba(255,206,86)',
+                            'rgba(16, 11, 173, 1)',
+                            'rgba(218, 10, 177, 1)',
                             'rgba(75,12,200)'
                         ]
                     }]
                 },
                 options: {
+                    responsive: true,
                     scales: {
                         yAxes: [{
                             ticks: {
@@ -124,23 +125,24 @@ include_once './includes/header.php'; ?>
 
             ctx = document.getElementById('staff-floyd').getContext('2d');
             chart = new Chart(ctx, {
-                type: 'doughnut',
+                type: 'pie',
                 data: {
                     labels: ['Male', 'Female'],
                     datasets: [{
                         label: "Staff Statistics",
                         data: [<?= $m ?>, <?= $f ?>],
                         backgroundColor: [
-                            'rgba(45,199,32)',
-                            'rgba(255,206,86)'
+                            'rgba(16, 11, 173, 1)',
+                            'rgba(172, 33, 145, 1)'
                         ],
                         borderColor: [
-                            'rgba(45,199,32)',
-                            'rgba(255,206,86)'
+                            'rgba(16, 11, 173, 1)',
+                            'rgba(172, 33, 145, 1)'
                         ]
                     }]
                 },
                 options: {
+                    responsive: true,
                     scales: {
                         yAxes: [{
                             ticks: {

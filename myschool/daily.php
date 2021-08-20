@@ -118,6 +118,7 @@ if (isset($_GET['class']) && $_GET['class'] != "") {
                     labels: ['Morning', 'Afternoon']
                 },
                 options: {
+                    responsive: true,
                     scales: {
                         yAxes: [{
                             ticks: {

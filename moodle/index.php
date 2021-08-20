@@ -79,8 +79,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     <?= Components::header("Login to Moodle", "h2", "center"); ?>
                     <form action="" method="post">
                         <div class="form-group">
-                            <label for="username">Student ID or Email</label>
-                            <input type="text" name="username" id="username" class="form-control" placeholder="Student ID | E-mail Address" value="<?= $student_id; ?>">
+                            <label for="username">Student ID </label>
+                            <input type="text" name="username" id="username" class="form-control" placeholder="Student ID" value="<?= $student_id; ?>">
                         </div>
 
                         <div class="form-group">

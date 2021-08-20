@@ -35,7 +35,7 @@ $isClassTeacher = Helper::isATeacherInClass($class, $sms_userId, $schoolId);
                 <h2><i class="mdi mdi-loading mdi-spin" style="font-size: 60px;"></i></h2>
             </div>
             <div class="row">
-                <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 mx-auto" id="panel" style="display: none;">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto" id="panel" style="display: none;">
 
 
                     <div class="card my-3 p-3">
@@ -180,7 +180,7 @@ $isClassTeacher = Helper::isATeacherInClass($class, $sms_userId, $schoolId);
         </div>
         <?php
 
-        include_once './includes/footer.php';
+        // include_once './includes/footer.php';
         ?>
 
 

@@ -8,7 +8,7 @@ use App\School\AcademicYear;
 
 include_once './includes/header.php';
 
-if (!Helper::isActivated($schoolId)) {
+if (!Helper::isActivated($schoolId) || $sms_role == $TEACHER) {
     Helper::showNotPermittedPage();
 }
 

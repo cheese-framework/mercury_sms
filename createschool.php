@@ -200,7 +200,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             </div>
         </div>
         <footer>
-            <p class="text-right text-small">Powered by QHITECH 2020 - <?= date("Y") ?></p>
+            <p class="text-center text-small">Powered by QHITECH 2020 - <?= date("Y") ?></p>
         </footer>
     </div>
     <script src="./vendors/js/materialize.min.js"></script>
