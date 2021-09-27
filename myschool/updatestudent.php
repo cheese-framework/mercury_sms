@@ -36,15 +36,31 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $dob = $_POST['dob'];
     $gender = $_POST['gender'];
     $address = $_POST['address'];
-    $phone = $_POST['phone'];
+    $phone = (strpos($_POST['phone'], '+') !== 0 || strpos($_POST['phone'], '+220') !== 0) ? str_replace(['220'], '+220', $_POST['phone']) : $_POST['phone'];
     $admission = $_POST['admissionNumber'];
     $class = (isset($_POST['class']) ? $_POST['class'] : "");
     $blood = (isset($_POST['blood']) ? $_POST['blood'] : "");
-    $parphone = $_POST['parphone'];
-    $emergency = $_POST['emergcon'];
+    $parphone = (strpos($_POST['parphone'], '+') !== 0 || strpos($_POST['parphone'], '+220') !== 0) ? str_replace(['220'], '+220', $_POST['parphone']) : $_POST['parphone'];
+    $emergency = (strpos($_POST['emergcon'], '+') !== 0 || strpos($_POST['emergcon'], '+220') !== 0) ? str_replace(['220'], '+220', $_POST['emergcon']) : $_POST['emergcon'];
     $illness = $_POST['illness'];
     $paremail = $_POST['paremail'];
     $email = (isset($_POST['email']) ? $_POST['email'] : NULL);
+    $password = (!$studentData->password ? password_hash("1234", PASSWORD_DEFAULT) : $studentData->password);
+
+
+    if (strpos($_POST['phone'], '+220') !== 0) {
+        $phone = "+220" . $phone;
+    }
+
+
+    if (strpos($_POST['parphone'], '+220') !== 0) {
+        $parphone = "+220" . $parphone;
+    }
+
+
+    if (strpos($_POST['emergcon'], '+220') !== 0) {
+        $emergency = "+220" . $emergency;
+    }
 
     if (Helper::isUsingOnlineAssessment($schoolId)) {
         if (Helper::isEmpty($email)) {
@@ -56,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
         if (empty($error)) {
             try {
-                $bool = Student::updateStudent($name, $class, $gender, $dob, $phone, $address, $admission, $blood, $parphone, $emergency, $illness, $id, $paremail, $email);
+                $bool = Student::updateStudent($name, $class, $gender, $dob, $phone, $address, $admission, $blood, $parphone, $emergency, $illness, $id, $paremail, $email, $password);
                 if ($bool) {
                     Helper::to("viewstudent.php?studentId=$id");
                 } else {

@@ -2,6 +2,7 @@
 
 namespace App\School;
 
+use App\Core\Helper;
 use App\Notifiable\Notifiable;
 use App\Database\Database;
 use App\Database\Finder;
@@ -142,5 +143,19 @@ class SMSParent extends Notifiable
             return $data->id;
         }
         return 0;
+    }
+
+    // authentication
+    public static function login($email, $password)
+    {
+        $service = new ParentsService(Database::getInstance());
+        $data =  $service->fetchByEmail($email);
+        if ($data) {
+            if (password_verify($password, $data->password)) {
+                return $data;
+            }
+            return false;
+        }
+        return false;
     }
 }

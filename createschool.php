@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $username = $_POST['username'];
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $confirm = $_POST['confirm'];
+    $confirm = $_POST['password2'];
     if (!Helper::isEmpty($schoolName, $username, $email, $password, $confirm)) {
         $bool = Helper::schoolEmailExists($schoolName);
         if ($bool) {
@@ -50,23 +50,23 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                                 'message' => "Thanks so much for joining us. You're on your way to get <b>Unbeatable experience</b> for your school management system with Mercury - SMS<br>Please confirm your email address by pressing the button below.",
                                 'link' => SCHOOL_URL . "/verify.php?token=$token"
                             ];
-                            // add to queue
 
                             try {
                                 $mailable = new Mailable('welcome', $welcomeData);
                                 $sent = $mailable->build()->send();
                                 if ($sent) {
-                                    // activate their onetime (one month free activation)
+                                    // activate their onetime (three months free activation)
                                     Helper::activateOneMonthFreeOffer($id, $email);
 
 ?>
                                     <style>
                                         .card {
-                                            width: 100%;
+                                            color: white;
+                                            width: 70%;
                                             margin: 10px auto;
                                             text-align: center;
                                             display: block;
-                                            background: #f3f3f3;
+                                            background: rgb(0, 179, 80);
                                             border-radius: 7px;
                                             box-shadow: 1px 1px 2px #ccc;
                                             padding: 10px;
@@ -120,91 +120,57 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <meta charset="UTF-8">
     <title>Get Started by Creating your School</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./vendors/css/materialize.min.css">
-    <link rel="stylesheet" href="static/css/style.css" />
+    <link rel="stylesheet" href="./static/register.css" />
 
 </head>
 
 <body>
-    <nav>
-        <div class="nav-wrapper purple darken-4">
-            <a href="index.php" class="brand-logo" style="text-decoration: none;">&nbsp; &nbsp; Mercury - SMS</a>
-        </div>
-    </nav>
-    <div class="container my-2">
-        <div class="row mb-5">
-            <div class="col-lg-12 col-md-12 col-sm-12 mx-auto">
-                <h1 class="text-center" style="text-shadow: 1px 1px 1px #000;">Get Started by Creating Your School
-                </h1>
-                <div class="col-lg-8 my-4 mx-auto">
-                    <?php
-                    if (!empty($error)) {
-                        echo "<div class='alert alert-danger' id='err'>";
-                        foreach ($error as $err) {
-                            echo $err . "<br>";
-                        }
-                        echo "</div><br>";
+    <?php
 
-                    ?>
+    if (!empty($error)) {
+        echo "<script>alert('" . $error[0] . "')</script>";
+    }
 
-                        <script>
-                            const err = document.getElementById('err');
-                            setTimeout(() => {
-                                err.style.display = 'none';
-                            }, 3000);
-                        </script>
-
-                    <?php
-                    }
-
-
-                    ?>
-                    <form action="" method="POST" autocomplete="OFF">
-                        <div class="input-field">
-                            <input type="text" name="schoolname" class="validate" value="<?= $schoolName; ?>" id="schoolname" required />
-                            <label for="schoolname">School Name: </label>
-                            <span class="helper-text" data-error='This field is required'></span>
+    ?>
+    <div class="container">
+        <section class="section-auth">
+            <h3>Create your account</h3>
+            <div class="auth">
+                <div class="login-form">
+                    <form action="" class="form" method="post" autocomplete="off">
+                        <div class="form__group">
+                            <input type="text" name="schoolname" id="schoolname" placeholder="School Name" required class="form__input" value="<?= $schoolName ?>">
+                            <label for="schoolname" class="form__label">School Name</label>
                         </div>
-
-                        <div class="input-field">
-                            <input type="text" name="username" class="validate" value="<?= $username; ?>" id="username" required />
-                            <label for="username">Username: </label>
-                            <span class="helper-text" data-error='This field is required'></span>
+                        <div class="form__group">
+                            <input type="text" name="username" id="username" placeholder="Username" required class="form__input" value="<?= $username ?>">
+                            <label for="username" class="form__label">Username</label>
                         </div>
-
-                        <div class="input-field">
-                            <input type="email" name="email" class="validate" value="<?= $email; ?>" id="email" required />
-                            <label for="email">School Email: </label>
-                            <span class="helper-text" data-error='This field is required'></span>
+                        <div class="form__group">
+                            <input type="email" name="email" id="email" placeholder="Email Address" required class="form__input" value="<?= $email ?>">
+                            <label for="email" class="form__label">Email Address</label>
                         </div>
-
-                        <div class="input-field">
-                            <input type="password" name="password" class="validate" id="password" required />
-                            <label for="password">Password: </label>
-                            <span class="helper-text" data-error='This field is required'></span>
+                        <div class="form__group">
+                            <input type="password" name="password" id="password" placeholder="Password" required class="form__input">
+                            <label for="password" class="form__label">Password</label>
                         </div>
-
-                        <div class="input-field">
-                            <input type="password" name="confirm" class="validate" id="confirm" required />
-                            <label for="confirm">Confirm Password: </label>
-                            <span class="helper-text" data-error='This field is required'></span>
+                        <div class="form__group">
+                            <input type="password" name="password2" id="password2" placeholder="Retype Password" required class="form__input">
+                            <label for="password2" class="form__label">Retype Password</label>
                         </div>
-
-                        <div class="input-field">
-                            <input type="submit" value="Continue" class="btn btn-github">
+                        <div class="form__group">
+                            <input type="submit" name="submit" id="submit" value="Create School" class="form__input">
                         </div>
                     </form>
-                    <p class="mt-2">By creating your school's account, you agree to our <a href="terms.html" target="_blank">terms and conditions</a></p>
-                    <p class="mt-2">Have an account? <a href="login.php">Login</a></p>
+                    <div class="info">
+                        <p>Powered by Mercury School Management System</p>
+                        <p>Have an account? <a href="login.php">Login</a></p>
+                        <p>Visit <a href="index.php">Homepage</a></p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <footer>
-            <p class="text-center text-small">Powered by QHITECH 2020 - <?= date("Y") ?></p>
-        </footer>
+        </section>
     </div>
-    <script src="./vendors/js/materialize.min.js"></script>
-
 </body>
 
 </html>

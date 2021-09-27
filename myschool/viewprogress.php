@@ -186,8 +186,9 @@ if ((isset($_GET['year']) && $_GET['year'] != "") &&
                                 }
                                 echo "<tr>";
                                 echo "<td><b>Total:</b></td>";
-                                echo "<td class='text-center'><b><i>...</i></b></td>";
-                                echo "<td class='text-center'><b><i>...</i></b></td>";
+                                echo "<td class='text-center'><b><i></i></b></td>";
+                                echo "<td class='text-center'><b><i></i></b></td>";
+                                echo "<td class='text-center'><b><i></i></b></td>";
                                 echo "<td class='text-center'><b> ~ $grandTotalAlt ~ </b></td>";
                                 echo "<td><b>Average: $avr%</b></td>";
                                 echo "<td></td>";

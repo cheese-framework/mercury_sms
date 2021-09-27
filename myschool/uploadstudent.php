@@ -17,27 +17,31 @@ $error = [];
 $success = "";
 
 if (isset($_GET['request_mail'])) {
-    $email = Helper::getSchoolEmail($schoolId);
-    $classData = Helper::loadClass($schoolId);
-    $dataClass = [];
-    if ($classData) {
-        foreach ($classData as $data) {
-            $dataClass[] = [$data->className, $data->classId];
+    try {
+        $email = Helper::getSchoolEmail($schoolId);
+        $classData = Helper::loadClass($schoolId);
+        $dataClass = [];
+        if ($classData) {
+            foreach ($classData as $data) {
+                $dataClass[] = [$data->className, $data->classId];
+            }
         }
-    }
-    $mail = new Mailable('sensitive', [
-        'schoolId' => $schoolId,
-        'academicYear' => AcademicYear::getCurrentYearId($schoolId),
-        'classData' => $dataClass,
-        'to' => $email,
-        'name' => Helper::getSchoolName($schoolId),
-        'fromName' => DEFAULT_FULLNAME,
-        'from' => DEFAULT_FROM,
-        'subject' => 'Please do not share this with anyone'
-    ]);
+        $mail = new Mailable('sensitive', [
+            'schoolId' => $schoolId,
+            'academicYear' => AcademicYear::getCurrentYearId($schoolId),
+            'classData' => $dataClass,
+            'to' => $email,
+            'name' => Helper::getSchoolName($schoolId),
+            'fromName' => DEFAULT_FULLNAME,
+            'from' => DEFAULT_FROM,
+            'subject' => 'Please do not share this with anyone'
+        ]);
 
-    $sent = $mail->build()->send();
-    $sent ? $success = "Mail was sent to {$email}" : $error[] = "Error occurred while sending mail to {$email}";
+        $sent = $mail->build()->send();
+        $sent ? $success = "Mail was sent to {$email}" : $error[] = "Error occurred while sending mail to {$email}";
+    } catch (Exception $e) {
+        $error[] = $e->getMessage();
+    }
 }
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {

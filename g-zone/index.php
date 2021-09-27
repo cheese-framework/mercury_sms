@@ -1,8 +1,41 @@
 <?php
 
+use App\Core\Helper;
 use App\Notifiable\Components\Components;
+use App\School\SMSParent;
 
 include_once "../init.php";
+
+// redirect to dashboard if session persist
+if (isset($_SESSION['g-zone-id'])) {
+    Helper::to("./dashboard.php");
+}
+
+$error = [];
+$email = "";
+
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    $email = $_POST['username'] ?? "";
+    $password = $_POST['password'] ?? "";
+
+    if (!Helper::isEmpty($email, $password)) {
+        $parent = SMSParent::login($email, $password);
+        if ($parent) {
+            $parent = json_encode($parent);
+            $data = json_decode($parent, true);
+            $_SESSION['g-zone-id'] = $data['id'];
+            $_SESSION['g-zone-name'] = $data['name'];
+            $_SESSION['g-zone-email'] = $data['email'];
+            $_SESSION['g-zone-school'] = $data['school'];
+            $_SESSION['g-zone-phone'] = $data['phone'];
+            Helper::to("./dashboard.php");
+        } else {
+            $error[] = "Invalid credentials";
+        }
+    } else {
+        $error[] = "All fields are required";
+    }
+}
 
 ?>
 <!DOCTYPE html>
@@ -14,7 +47,7 @@ include_once "../init.php";
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Mercury - SMS |
-        ADMIN
+        G-ZONE
     </title>
     <link rel="stylesheet" href="../myschool/assets/css/style.css">
 </head>
@@ -22,13 +55,23 @@ include_once "../init.php";
 <body>
     <div class="container">
         <div class="col-lg-8 my-5 mx-auto">
+            <?php
+            if (!empty($error)) {
+                echo "<div class='alert alert-danger col-lg-12 text-center' id='msg'>";
+                foreach ($error as $e) {
+                    echo $e . "<br>";
+                }
+                echo "</div>";
+            }
+
+            ?>
             <div class="card">
                 <div class="card-body">
                     <?= Components::header("Login", "h2", "center"); ?>
-                    <form action="" method="post">
+                    <form action="" method="post" autocomplete="off">
                         <div class="form-group">
-                            <label for="username">Username or E-mail</label>
-                            <input type="text" name="username" id="username" class="form-control" placeholder="Username | E-mail Address">
+                            <label for="username">E-mail</label>
+                            <input type="text" name="username" id="username" class="form-control" placeholder="E-mail Address">
                         </div>
 
                         <div class="form-group">
@@ -40,7 +83,7 @@ include_once "../init.php";
                             <input type="submit" value="Login" class="btn btn-primary">
                         </div>
                     </form>
-                    <?= Components::body("<small><i>Powered by QHITECH</i></small>", true, "right") ?>
+                    <?= Components::body("<small><i>Powered by QHITECH</i></small>", true, "center") ?>
                 </div>
             </div>
         </div>

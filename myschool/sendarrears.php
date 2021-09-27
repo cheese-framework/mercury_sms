@@ -68,10 +68,12 @@ if (isset($_GET['class'])) {
                 }
             }
 
-            echo "OK";
-            Helper::appendNoticeDate($class, $school);
-            $log = new Logger($msg, "Arrears Notification sent for " . Helper::classEncode($class), $school, 1);
-            $log::save();
+            if ($mail->sent) {
+                echo "OK";
+                Helper::appendNoticeDate($class, $school);
+                $log = new Logger($msg, "Arrears Notification sent for " . Helper::classEncode($class), $school, 1);
+                $log::save();
+            }
         } catch (Exception $e) {
             echo "Could not send notification";
         }

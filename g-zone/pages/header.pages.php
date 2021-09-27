@@ -1,11 +1,19 @@
 <?php
 
 use App\Core\Helper;
+use App\School\SMSParent;
 
 include "../init.php";
 
-if (isset($_SESSION['mercury_sms_user'])) {
+if (!isset($_SESSION['g-zone-id'])) {
     Helper::to("index.php");
+} else {
+    $gZoneId = $_SESSION['g-zone-id'];
+    $gZoneEmail = $_SESSION['g-zone-email'];
+    $gZonePhone = $_SESSION['g-zone-phone'];
+    $gZoneUsername = $_SESSION['g-zone-name'];
+    $gZoneSchool = $_SESSION['g-zone-school'];
+    $smsParentObj = new SMSParent($gZoneUsername, $gZoneEmail, $gZoneSchool, $gZonePhone, $gZoneId);
 }
 
 
@@ -22,7 +30,7 @@ if (isset($_SESSION['mercury_sms_user'])) {
     <meta name="keywords" content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 5 admin, bootstrap 5, css3 dashboard, bootstrap 5 dashboard, Ample lite admin bootstrap 5 dashboard, frontend, responsive bootstrap 5 admin template, Ample admin lite dashboard bootstrap 5 dashboard template">
     <meta name="description" content="Ample Admin Lite is powerful and clean admin dashboard template, inpired from Bootstrap Framework">
     <meta name="robots" content="noindex,nofollow">
-    <title>Ample Admin Lite Template by WrapPixel</title>
+    <title>G-Zone | Mercury School Management System</title>
     <link rel="canonical" href="https://www.wrappixel.com/templates/ample-admin-lite/" />
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="plugins/images/favicon.png">
@@ -56,7 +64,7 @@ if (isset($_SESSION['mercury_sms_user'])) {
                     <!-- ============================================================== -->
                     <!-- Logo -->
                     <!-- ============================================================== -->
-                    <a class="navbar-brand" href="dashboard.html">
+                    <a class="navbar-brand" href="#">
                         <!-- Logo icon -->
                         <b class="logo-icon">
                             <!-- Dark Logo icon -->
@@ -92,20 +100,22 @@ if (isset($_SESSION['mercury_sms_user'])) {
                         <!-- ============================================================== -->
                         <!-- Search -->
                         <!-- ============================================================== -->
-                        <li class=" in">
+                        <!-- <li class=" in">
                             <form role="search" class="app-search d-none d-md-block me-3">
                                 <input type="text" placeholder="Search..." class="form-control mt-0">
                                 <a href="" class="active">
                                     <i class="fa fa-search"></i>
                                 </a>
                             </form>
-                        </li>
+                        </li> -->
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
                         <li>
                             <a class="profile-pic" href="#">
-                                <img src="plugins/images/users/varun.jpg" alt="user-img" width="36" class="img-circle"><span class="text-white font-medium">Steave</span></a>
+                                <!-- <img src="plugins/images/users/varun.jpg" alt="user-img" width="36" class="img-circle"> -->
+                                <span class="text-white font-medium"><?= $gZoneUsername ?></span>
+                            </a>
                         </li>
                         <!-- ============================================================== -->
                         <!-- User profile and search -->

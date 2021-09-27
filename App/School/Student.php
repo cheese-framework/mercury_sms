@@ -166,11 +166,12 @@ class Student
         $medical,
         $id,
         $email,
-        $sEmail
+        $sEmail,
+        $password
     ) {
         $db = Database::getInstance();
         $db->query(
-            "UPDATE students SET fullname=?,class=?,gender=?,dob=?,phone=?,address=?,admissionno=?,bloodgroup=?,parphone=?,emergcon=?,medical=?,paremail=?,email=? WHERE studentId=?"
+            "UPDATE students SET fullname=?,class=?,gender=?,dob=?,phone=?,address=?,admissionno=?,bloodgroup=?,parphone=?,emergcon=?,medical=?,paremail=?,email=?,password=? WHERE studentId=?"
         );
         $db->bind(1, $name);
         $db->bind(2, $class);
@@ -185,7 +186,8 @@ class Student
         $db->bind(11, $medical);
         $db->bind(12, $email);
         $db->bind(13, $sEmail);
-        $db->bind(14, $id);
+        $db->bind(14, $password);
+        $db->bind(15, $id);
         $db->execute();
         return ($db->rowCount() > 0);
     }

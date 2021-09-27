@@ -70,6 +70,7 @@ $isClassTeacher = Helper::isATeacherInClass($class, $sms_userId, $schoolId);
                                 echo "<th><b>Subject</b></th>";
                                 echo "<div class='table-responsive'>";
                                 echo "<th class='text-center'><b>Continuous Assessment</b></th>";
+                                echo (Helper::isUsingOnlineAssessment($schoolId) ? "<th>Online Assessment</th>" : "");
                                 echo "<th>Exam</th>";
                                 echo "<th><b>Total %</b></th>";
                                 echo "<th><b>Remark</b></th>";
@@ -92,6 +93,7 @@ $isClassTeacher = Helper::isATeacherInClass($class, $sms_userId, $schoolId);
                                     echo "<tr>";
                                     echo "<td>" . $d->subject . "</td>";
                                     if ($record != null) {
+
                                         $subCount += 100;
                                         echo "<td>";
                                         echo "<table class='table table-bordered table-striped table-hover'>
@@ -125,6 +127,7 @@ $isClassTeacher = Helper::isATeacherInClass($class, $sms_userId, $schoolId);
                                             2
                                         );
                                         $grandTotalAlt += $originalGrade;
+                                        echo "<td class='" . (!$isClassTeacher && !in_array($d->subjectId, $mySubjects) ? 'make-blur' : '') . "'>" . number_format(floatval($record[2]), 1) . "</td>";
                                         echo "<td class='" . (!$isClassTeacher && !in_array($d->subjectId, $mySubjects) ? 'make-blur' : '') . "'>" . floatval($record[1]) . "</td>";
                                         echo "<td class='" . (!$isClassTeacher && !in_array($d->subjectId, $mySubjects) ? 'make-blur' : '') . "'><b>" . $originalGrade .
                                             "</b></td>";

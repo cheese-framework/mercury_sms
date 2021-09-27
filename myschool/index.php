@@ -4,7 +4,6 @@ use App\Database\Database;
 use App\School\AcademicYear;
 use App\School\Student;
 use App\Core\Helper;
-use App\Helper\Voucher\Voucher;
 
 include_once './includes/header.php'; ?>
 <div class="container-scroller">
@@ -12,11 +11,6 @@ include_once './includes/header.php'; ?>
     <?php include_once './includes/navbar.php'; ?>
     <!-- partial -->
     <div class="main-panel">
-        <?php
-        // Voucher::addVoucher('YEAR', '2022-07-20', 7650, TRUE);
-        // Voucher::addVoucher('MONTH', '2021-09-21', 3450, TRUE);
-
-        ?>
         <div class="content-wrapper pb-0">
             <div class="row my-2">
                 <div class="card col-lg-5 mr-2">

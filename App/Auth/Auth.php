@@ -40,7 +40,7 @@ class Auth extends Notifiable
 
     public static function generateToken()
     {
-        $string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-_';
+        $string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890';
         $shuffleString = str_shuffle($string);
         $token = uniqid($shuffleString);
         return $token;

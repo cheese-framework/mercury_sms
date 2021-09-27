@@ -5,11 +5,11 @@ namespace App\Entity;
 class Parents extends Base
 {
     const TABLE_NAME = 'parents';
-    protected $id = 0;
-    protected $name = '';
-    protected $email = '';
-    protected $phone = '';
-    protected $school = 0;
+    public $id = 0;
+    public $name = '';
+    public $email = '';
+    public $phone = '';
+    public $school = 0;
     protected $mapping = [
         'id' => 'id',
         'name' => 'name',

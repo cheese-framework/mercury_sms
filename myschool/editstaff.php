@@ -36,6 +36,12 @@ if (isset($_GET['staff_id']) && $_GET['staff_id'] != "") {
                         $error[] = "E-mail already exists";
                     }
                 } else {
+                    // add +220 to phone number
+                    if ($contact) {
+                        if (strpos($contact, "+220") !== 0) {
+                            $contact = "+220" . $contact;
+                        }
+                    }
                     Helper::updateStaffRecord($username, $enteredEmail, $role, $gender, $dob, $profqual, $acadqual, $yearAppointed, $contact, $staffId);
                     Helper::to("staffsprofile.php");
                 }
