@@ -35,7 +35,7 @@ $id = $_GET['id'] ?? "";
                                 echo "<tr>";
                                 echo "<td>" . Student::getFullName($submission->student) . "</td>";
                                 echo "<td>" . Helper::classEncode($submission->class) . "</td>";
-                                echo "<td><a href='assess.php?id={$submission->assessment}&student={$submission->student}&term={$submission->term}&subject={$submission->subject}&year={$submission->year}' class='btn btn-primary' target='_blank'>Assess</a></td>";
+                                echo "<td><a href='assess.php?id={$submission->assessment}&student={$submission->student}&term={$submission->term}&subject={$submission->subject}&year={$submission->year}' class='btn btn-primary' >Assess</a></td>";
                                 echo "</tr>";
                             }
                         }

@@ -2149,4 +2149,113 @@ class Helper
         $db->bind(2, $student);
         $db->execute();
     }
+
+
+    public static function getClassIdByLevel($level)
+    {
+        $db = Database::getInstance();
+        $db->query('SELECT classId FROM classes WHERE levels=?');
+        $db->bind(1, $level);
+        $result = $db->single();
+        if ($db->rowCount() > 0) {
+            return $result->classId;
+        }
+        throw new Exception("Could not find next level to go to");
+    }
+
+    public static function getClassList($studentId)
+    {
+        $db = Database::getInstance();
+        $db->query("SELECT classes FROM students WHERE studentId=?");
+        $db->bind(1, $studentId);
+        $result = $db->single();
+        if ($db->rowCount() > 0) {
+            if ($result->classes) {
+                return self::makeList($result->classes);
+            } else {
+                return null;
+            }
+        }
+        return null;
+    }
+
+
+    public static function getYearList($studentId)
+    {
+        $db = Database::getInstance();
+        $db->query("SELECT years FROM students WHERE studentId=?");
+        $db->bind(1, $studentId);
+        $result = $db->single();
+        if ($db->rowCount() > 0) {
+            if ($result->years) {
+                return self::makeList($result->years);
+            } else {
+                return null;
+            }
+        }
+        return null;
+    }
+
+
+
+    public static function getSchoolCount()
+    {
+        $db = Database::getInstance();
+        $db->query("SELECT schoolId FROM school");
+        $db->execute();
+        return $db->rowCount();
+    }
+
+    public static function getActiveSchools()
+    {
+        $db = Database::getInstance();
+        $db->query("SELECT schoolId FROM school WHERE isActivated=1");
+        $db->execute();
+        return $db->rowCount();
+    }
+
+    public static function getStudentsCount()
+    {
+        $db = Database::getInstance();
+        $db->query("SELECT studentId FROM students");
+        $db->execute();
+        return $db->rowCount();
+    }
+
+    public static function getStaffsCount()
+    {
+        $db = Database::getInstance();
+        $db->query("SELECT staffId FROM staffs");
+        $db->execute();
+        return $db->rowCount();
+    }
+
+    public static function getTotalParents()
+    {
+        $db = Database::getInstance();
+        $db->query("SELECT id FROM parents");
+        $db->execute();
+        return $db->rowCount();
+    }
+
+    public static function getTotalVouchers()
+    {
+        $db = Database::getInstance();
+        $db->query("SELECT id FROM vouchers");
+        $db->execute();
+        return $db->rowCount();
+    }
+
+    public static function getUsedVouchers()
+    {
+        $db = Database::getInstance();
+        $db->query("SELECT id FROM vouchers WHERE isUsed=1");
+        $db->execute();
+        return $db->rowCount();
+    }
+
+    public static function getTotalUsers()
+    {
+        return self::getTotalParents() + self::getStudentsCount() + self::getStaffsCount();
+    }
 }

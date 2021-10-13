@@ -185,7 +185,10 @@ class Assessment
         }
 
         if (!$mySubjects) {
-            return;
+            $mySubjects = [];
+        }
+        if (!$coreSubjects) {
+            $coreSubjects = [];
         }
 
         $assessments = NULL;
@@ -302,5 +305,15 @@ class Assessment
             $db->bind(2, $id);
             $db->execute();
         }
+    }
+
+    public static function getAssessmentText($id)
+    {
+        $db = Database::getInstance();
+        $db->query("SELECT details FROM assessments WHERE id=?");
+        $db->bind(1, $id);
+        $record = $db->single();
+        if ($db->rowCount() > 0) return $record->details;
+        return NULL;
     }
 }

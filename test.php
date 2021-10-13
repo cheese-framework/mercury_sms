@@ -1,13 +1,7 @@
 <?php
 
-use App\Database\CSVUploader;
+require "./init.php";
 
-include __DIR__ . "/init.php";
+use App\School\LevelUp;
 
-$csvFile = __DIR__ . "/names.csv";
-
-$fields = ['name', 'age', 'class'];
-
-$csvUploader = new CSVUploader($csvFile, 'names', $fields);
-
-$csvUploader->uploadToDB();
+LevelUp::level(1, 1, 8, 1, 2);

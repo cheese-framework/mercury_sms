@@ -29,12 +29,16 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $subject = "Password Reset";
                 try {
                     $mail->sendMail([$email => $email], $subject, $message, DEFAULT_FULLNAME, DEFAULT_FROM);
-                    echo "<div class='card col-lg-9 mx-auto'>";
-                    echo "<h3 class='text-center p-3'>Password Request Link Sent</h3>";
-                    echo "<p class='lead'>We have sent a link to your e-mail address<br>Don't see anything? Check spam or   
+                    if ($mail->sent) {
+                        echo "<div class='card col-lg-9 mx-auto'>";
+                        echo "<h3 class='text-center p-3'>Password Request Link Sent</h3>";
+                        echo "<p class='lead'>We have sent a link to your e-mail address<br>Don't see anything? Check spam or   
                     <button class='btn btn-primary' onclick='window.location.reload()'>Resend</button></p>";
-                    echo "</div>";
-                    die();
+                        echo "</div>";
+                        die();
+                    } else {
+                        $mail->returnError();
+                    }
                 } catch (Exception $e) {
                     $error[] = $e->getMessage();
                     $mail->sendMail([$email => $email], $subject, $message, DEFAULT_FULLNAME, DEFAULT_FROM);
@@ -61,13 +65,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
 }
 
-if (!empty($error)) {
-    echo "<div class='alert alert-danger '>";
-    foreach ($error as $err) {
-        echo $err . "<br>";
-    }
-    echo "</div>";
-}
 
 ?>
 <!DOCTYPE html>
@@ -85,6 +82,17 @@ if (!empty($error)) {
 <body>
     <div class="container">
         <section class="section-auth">
+            <?php
+
+            if (!empty($error)) {
+                echo "<div class='alert alert-danger '>";
+                foreach ($error as $err) {
+                    echo "<p class='info'>" . $err . "</p>";
+                }
+                echo "</div>";
+            }
+
+            ?>
             <h3>Request Password Reset</h3>
             <div class="auth">
                 <div class="login-form">

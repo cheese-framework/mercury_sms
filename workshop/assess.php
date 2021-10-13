@@ -84,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $tempStudent->notify($msg, "Assessment Graded", DEFAULT_FULLNAME, DEFAULT_FROM);
                 } catch (Exception $e) {
                 }
-                Helper::to("dashboard.php");
+                Helper::to("view-submissions.php?id=$id");
             } catch (Exception $e) {
                 $error[] = $e->getMessage();
             }
@@ -116,6 +116,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 ?>
                 <h4 class="text-center">Assess Grade</h4>
                 <p>Assessment grade stacked at: <b><?= $assessmentData->grade ?></b></p>
+                <div style="max-height: 300px; overflow-x: auto; margin-bottom: 20px; padding: 10px;">
+                    <b>Assessment: </b>
+                    <?= Assessment::getAssessmentText($id); ?>
+                </div>
                 <?php if ($submittedData->details) : ?>
                     <div class="card p-2" style="height: fit-content; max-height: 300px; overflow:auto">
                         <b>Submission: </b>

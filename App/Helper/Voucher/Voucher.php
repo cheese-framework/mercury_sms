@@ -114,4 +114,15 @@ class Voucher
         $db->bind(1, $voucher);
         $db->execute();
     }
+
+    public static function loadVouchers()
+    {
+        $db = Database::getInstance();
+        $db->query("SELECT * FROM vouchers ORDER BY id DESC LIMIT 10");
+        $data = $db->resultset();
+        if ($db->rowCount() > 0) {
+            return $data;
+        }
+        throw new Exception("No voucher found.");
+    }
 }

@@ -5,6 +5,16 @@ use App\Core\Helper;
 
 include_once './init.php';
 
+// if session is on redirect to dashboard
+
+if (isset($_SESSION['sms_userid'])) {
+    if (isset($_SESSION['redirect_path_mercury'])) {
+        Helper::to($_SESSION['redirect_path_mercury']);
+    } else {
+        Helper::to("myschool");
+    }
+}
+
 $error = [];
 $username = "";
 
