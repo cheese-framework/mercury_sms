@@ -75,6 +75,13 @@ use App\Core\Helper;
                         </li>
                     <?php endif; ?>
 
+                    <?php if ($sms_role == $ADMIN && Helper::isActivated($schoolId)) : ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="leveling.php">
+                                <i class="mdi mdi-book"></i> &nbsp; &nbsp;Promotion Panel</a>
+                        </li>
+                    <?php endif; ?>
+
                     <?php if (Helper::isUsingOnlineAssessment($schoolId) && Helper::isActivated($schoolId) && $sms_role == $TEACHER) : ?>
                         <li class="nav-item">
                             <a class="nav-link" target="_blank" href="../workshop">

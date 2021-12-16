@@ -1,4 +1,4 @@
-<?php
+	<?php
 
 use App\Core\Helper;
 use App\Auth\Auth;
@@ -41,15 +41,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                         if ($hasCreatedUser) {
                             // add token
                             Auth::addToken($token, $email);
-                            $welcomeData = [
-                                'to' => $email,
-                                'name' => $username,
-                                'from' => DEFAULT_FROM,
-                                'fromName' => DEFAULT_FULLNAME,
-                                'subject' => 'Verify Your Account',
-                                'message' => "Thanks so much for joining us. You're on your way to get <b>Unbeatable experience</b> for your school management system with Mercury - SMS<br>Please confirm your email address by pressing the button below.",
-                                'link' => SCHOOL_URL . "/verify.php?token=$token"
-                            ];
+		                    $welcomeData = [
+		                        'to' => $email,
+		                        'name' => $username,
+		                        'from' => DEFAULT_FROM,
+		                        'fromName' => DEFAULT_FULLNAME,
+		                        'subject' => 'Verify Your Account',
+		                        'message' => "Thanks so much for joining us. You're on your way to get <b>Unbeatable experience</b> for your school management system with Mercury - SMS<br>Please confirm your email address by pressing the button below.",
+		                        'link' => SCHOOL_URL . "/verify.php?token=$token"
+		                    ];
 
                             try {
                                 $mailable = new Mailable('welcome', $welcomeData);

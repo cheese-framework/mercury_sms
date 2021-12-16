@@ -4,6 +4,7 @@ namespace App\School;
 
 use App\Database\Database;
 use App\Core\Helper;
+use App\Queue\TempStudent;
 use Exception;
 
 class LevelUp
@@ -43,6 +44,8 @@ class LevelUp
       $db->bind(6, $studentId);
       $db->execute();
       // TODO: send mail to student telling them they have been promoted
+      $student = new TempStudent(['mail'], $studentId);
+      $student->notify("You have been moved to " . Helper::classEncode($nextClass), "Promotional Panel", DEFAULT_FULLNAME, DEFAULT_FROM);
     } catch (Exception $e) {
       throw $e;
     }
